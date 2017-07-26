@@ -16,6 +16,8 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+gem 'mqtt'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
