@@ -56,7 +56,7 @@ Thread.new do
   end
 end
 
-#sleep 5
+sleep 5
 
-#exit
+exit
 
