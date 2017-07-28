@@ -22,6 +22,7 @@ task :send_measures => :environment do
       # The block will be called when you messages arrive to the topic
       c.get('sensor/temperature') do |topic, message|
         puts "#{topic}: #{message}"
+        Test.create(nom: "#{topic}", valeur: "#{message}")
       end
     end
   end
