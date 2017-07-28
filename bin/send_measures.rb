@@ -4,6 +4,7 @@ require 'mqtt'
 require 'uri'
 require 'pg'
 
+
 # Create a hash with the connection parameters from the URL
 uri = URI.parse ENV['CLOUDMQTT_URL'] || 'mosquitto://localhost:1883'
 conn_opts = {
@@ -22,21 +23,21 @@ Thread.new do
     c.get('sensor/temperature') do |topic, message|
       puts "#{topic}: #{message}"
 
-      begin
+      #begin
 
-          con = PG.connect(:dbname => "demo_IOT_production", :user => "demo_IOT", :password => ENV['DEMO_IOT_DATABASE_PASSWORD'])
-          con.exec "INSERT INTO tests(nom, valeur, created_at, updated_at)
-          VALUES('#{topic}', '#{message}', '#{Time.now}', '#{Time.now}')"
+      #    con = PG.connect(:dbname => "demo_IOT_production", :user => "demo_IOT", :password => ENV['DEMO_IOT_DATABASE_PASSWORD'])
+      #    con.exec "INSERT INTO tests(nom, valeur, created_at, updated_at)
+      #    VALUES('#{topic}', '#{message}', '#{Time.now}', '#{Time.now}')"
 
-      rescue PG::Error => e
+      #rescue PG::Error => e
 
-          puts e.message
+      #    puts e.message
 
-      ensure
+      #ensure
 
-          con.close if con
+      #    con.close if con
 
-      end
+      #end
 
     end
   end
@@ -51,27 +52,11 @@ Thread.new do
       #test = Test.new(nom: "#{topic}", valeur: "#{message}")
       #test.save
 
-      begin
-
-          con = PG.connect(:dbname => "demo_IOT_production", :user => "demo_IOT", :password => ENV['DEMO_IOT_DATABASE_PASSWORD'])
-          con.exec "INSERT INTO tests(nom, valeur, created_at, updated_at)
-          VALUES('#{topic}', '#{message}', '#{Time.now}', '#{Time.now}')"
-
-      rescue PG::Error => e
-
-          puts e.message
-
-      ensure
-
-          con.close if con
-
-      end
-
     end
   end
 end
 
-sleep 5
+#sleep 5
 
-exit
+#exit
 
