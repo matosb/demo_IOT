@@ -1,5 +1,5 @@
 desc "This task is called by the Heroku scheduler add-on to take tempertaure"
-task :take_measures => :environment do
+task :take_temperature => :environment do
   puts "Take temperature ..."
 
   require 'mqtt'
